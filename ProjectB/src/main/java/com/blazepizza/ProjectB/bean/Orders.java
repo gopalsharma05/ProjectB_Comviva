@@ -1,32 +1,56 @@
 package com.blazepizza.ProjectB.bean;
 
+import org.hibernate.annotations.Entity;
 
+@Entity
 public class Orders {
 	
-	
-	private int price,id;
-	private String pizza;
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getPizza() {
-		return pizza;
-	}
-	public void setPizza(String pizza) {
-		this.pizza = pizza;
+	public Orders() {
+		
 	}
 	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Orders [username=" + username + ", task=" + task + ", description=" + description + ", completed="
+				+ completed + "]";
+	}
 
+	private String username;
+	
+	private String task,description,completed;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getTask() {
+		return task;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(String completed) {
+		this.completed = completed;
+	}
+	
+	
+	 
 }

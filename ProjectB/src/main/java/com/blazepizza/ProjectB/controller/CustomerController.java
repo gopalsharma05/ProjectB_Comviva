@@ -2,11 +2,14 @@ package com.blazepizza.ProjectB.controller;
 
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.blazepizza.ProjectB.bean.Orders;
 import com.blazepizza.ProjectB.bean.ProfileBean;
 import com.blazepizza.ProjectB.bean.UserCredential;
 import com.blazepizza.ProjectB.service.CustomerService;
@@ -34,6 +37,7 @@ public class CustomerController {
     	
     	if(cserv.checkExistence(customer)==1)
     	{
+    		
     		return new ModelAndView("alreadyExist");
     	}
     	else
@@ -48,30 +52,49 @@ public class CustomerController {
     }
     
     @RequestMapping(value="/signedin")
-    public ModelAndView meth4(@ModelAttribute("uc")UserCredential uc)
+    public ModelAndView meth4(@ModelAttribute("uc")UserCredential uc,Model m)
     {
     	 if(cserv.isAuth(uc))
     	 {
-    		 System.out.println("User is found");
+//   		 System.out.println("User is found");
+    		 
+    		 m.addAttribute("aaa",uc.getUsername());
     		 return new ModelAndView("signsuccess");
     	 }
     	 else
     	 {
-    		 System.out.println("User is NOT found");
-    		 return new ModelAndView("index");
+    		 String message="User is NOT found";
+    		 ModelAndView mv=new ModelAndView();
+    		 mv.addObject("message", message);
+    		 mv.setViewName("index");
+    		 return mv;	
     	 }
     }
     @RequestMapping(value="/signup")
     public ModelAndView meth2()
     {
-    	
-    	
         return new ModelAndView("Second");
-    
-    
     }
     
+    @RequestMapping(value="/addToUserCart")
+    public ModelAndView meth5(@ModelAttribute("ord")Orders ord)
+    {
+    	cserv.addToOrders(ord);
+        return new ModelAndView("addedToCart");
+        
+    }
     
-
+    @RequestMapping(value="/myTasks")
+    public ModelAndView meth5(Model m)
+    {
+	
+    	String username=(String) m.getAttribute("rohit");
+    	System.out.println(username+" username inside the controller ");
+    	m.addAttribute("aa", cserv.findAllTasks(username));
+    	
+        return new ModelAndView("usersTasks");
+        
+    }
+    
 
 }

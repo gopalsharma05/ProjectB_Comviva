@@ -1,14 +1,23 @@
 package com.blazepizza.ProjectB.dao;
 
 import org.hibernate.Session;
+
+
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.blazepizza.ProjectB.bean.Orders;
 import com.blazepizza.ProjectB.bean.ProfileBean;
 import com.blazepizza.ProjectB.bean.UserCredential;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 @Repository
 public class CustomerDao {
@@ -50,6 +59,32 @@ public class CustomerDao {
 		System.out.println("user's password: "+password);
 		 
 	    return count>0;
+	}
+
+	public int addToOrders(Orders ord) {
+			
+		
+		return jdbcTemplate.update("insert into Tasks values('" + ord.getUsername() + "','"
+				+ ord.getTask() + "','" + ord.getDescription() + "','" + ord.getCompleted() + "')");	
+		
+	}
+	
+	public List<Orders> findAllTasks(String username)
+	{
+		
+
+		 
+        System.out.println("username of the user for which task to be extracted is : "+username);
+        String sql = "SELECT * FROM Tasks WHERE username = ?";
+
+        List<Orders> orders= (ArrayList<Orders>)jdbcTemplate.query(
+            sql, 
+            new Object[]{username}, 
+            new BeanPropertyRowMapper(Orders.class));
+        
+        
+        return orders;
+		
 	}
 	
 	

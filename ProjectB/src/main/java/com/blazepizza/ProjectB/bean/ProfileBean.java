@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProfileBean {
 
+	
 	@NotNull
 	private String userid;
 	

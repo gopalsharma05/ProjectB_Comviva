@@ -1,9 +1,12 @@
 package com.blazepizza.ProjectB.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.blazepizza.ProjectB.bean.Orders;
 import com.blazepizza.ProjectB.bean.ProfileBean;
 import com.blazepizza.ProjectB.bean.UserCredential;
 import com.blazepizza.ProjectB.dao.CustomerDao;
@@ -40,6 +43,20 @@ private CustomerDao cdao;
 	{
 	
 		return cdao.isAuth(uc);
+	}
+	
+	@Transactional
+	public int addToOrders(Orders ord)
+	{
+	
+		return cdao.addToOrders(ord);
+	}
+	
+	@Transactional
+	public List<Orders> findAllTasks(String username)
+	{
+	
+		return cdao.findAllTasks(username);
 	}
 	
 

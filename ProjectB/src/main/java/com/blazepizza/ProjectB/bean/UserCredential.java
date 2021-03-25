@@ -1,11 +1,26 @@
 package com.blazepizza.ProjectB.bean;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 
-@Component
+import javax.persistence.CascadeType;
+ 	
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Entity;
+
+
+
+ @Entity
 public class UserCredential {
 	
+//	private Orders orders;
+	
 	private String password,username;
+	
+	@OneToMany(targetEntity = Orders.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "cp_fk" ,referencedColumnName = "username" )
+	List<Orders> orders;
 
 	public String getPassword() {
 		return password;
