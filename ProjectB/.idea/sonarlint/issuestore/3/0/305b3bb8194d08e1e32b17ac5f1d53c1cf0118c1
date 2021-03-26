@@ -1,5 +1,0 @@
-
-G	Web:S1827"+Remove this deprecated "bgcolor" attribute.(Íµ£¯8©¨˜ò„/
-PWeb:PageWithoutTitleCheck"Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ8©¨˜ò„/
-a	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8©¨˜ò„/
-jWeb:DoctypePresenceCheck":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ8©¨˜ò„/
